@@ -32,15 +32,15 @@ class Entity
     /**
      * This signal is dispatched when a component is added to the entity.
      */
-    public var componentAdded(default, null):Signal<Entity, Class<Dynamic>>;
+    public var componentAdded(default, null):Signal<Entity, Class<Dynamic>> = new Signal<Entity, Class<Dynamic>>();
     /**
      * This signal is dispatched when a component is removed from the entity.
      */
-    public var componentRemoved(default, null):Signal<Entity, Class<Dynamic>>;
+    public var componentRemoved(default, null):Signal<Entity, Class<Dynamic>> = new Signal<Entity, Class<Dynamic>>();
     /**
      * Dispatched when the name of the entity changes. Used internally by the engine to track entities based on their names.
      */
-    public var nameChanged:Signal<Entity, String>;
+    public var nameChanged:Signal<Entity, String> = new Signal<Entity, String>();
 
     public var previous:Entity;
     public var next:Entity;
@@ -48,9 +48,6 @@ class Entity
 
     public function new(name:String = "")
     {
-        componentAdded = new Signal<Entity, Class<Dynamic>>();
-        componentRemoved = new Signal<Entity, Class<Dynamic>>();
-        nameChanged = new Signal<Entity, String>();
         components = new ClassMap();
 
         if (name != "")

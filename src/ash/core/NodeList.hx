@@ -1,7 +1,7 @@
 package ash.core;
 
 import ash.GenericListIterator;
-import ash.signals.Signal1;
+import hx.event.Signal;
 
 /**
  * A collection of nodes.
@@ -36,19 +36,19 @@ class NodeList<TNode:Node<TNode>>
      *
      * <p>The signal will pass a single parameter to the listeners - the node that was added.</p>
      */
-    public var nodeAdded(default, null):Signal1<TNode>;
+    public var nodeAdded(default, null):Signal<TNode>;
 
     /**
      * A signal that is dispatched whenever a node is removed from the node list.
      *
      * <p>The signal will pass a single parameter to the listeners - the node that was removed.</p>
      */
-    public var nodeRemoved(default, null):Signal1<TNode>;
+    public var nodeRemoved(default, null):Signal<TNode>;
 
     public function new()
     {
-        nodeAdded = new Signal1<TNode>();
-        nodeRemoved = new Signal1<TNode>();
+        nodeAdded = new Signal<TNode>();
+        nodeRemoved = new Signal<TNode>();
     }
 
     public function add(node:TNode):Void
@@ -101,7 +101,7 @@ class NodeList<TNode:Node<TNode>>
     /**
      * true if the list is empty, false otherwise.
      */
-    public var empty(get_empty, never):Bool;
+    public var empty(get, never):Bool;
 
     private inline function get_empty():Bool
     {

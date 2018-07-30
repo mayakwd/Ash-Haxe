@@ -1,8 +1,7 @@
 package ash.core;
 
+import hx.event.Signal;
 import ash.ClassMap;
-import ash.signals.Signal0;
-import ash.signals.Signal1;
 
 /**
  * The Engine class is the central point for creating and managing your game state. Add
@@ -10,8 +9,8 @@ import ash.signals.Signal1;
  */
 class Engine
 {
-    public var entities(get_entities, never):Iterable<Entity>;
-    public var systems(get_systems, never):Iterable<System>;
+    public var entities(get, never):Iterable<Entity>;
+    public var systems(get, never):Iterable<System>;
 
     private var entityNames:Map<String, Entity>;
     private var entityList:EntityList;
@@ -23,15 +22,15 @@ class Engine
      */
     public var updating(default, null):Bool;
 
-    public var entityAdded(default, null):Signal1<Entity>;
-    public var entityRemoved(default, null):Signal1<Entity>;
+    public var entityAdded(default, null):Signal<Entity>;
+    public var entityRemoved(default, null):Signal<Entity>;
 
     /**
      * Dispatched when the update loop ends. If you want to add and remove systems from the
      * engine it is usually best not to do so during the update loop. To avoid this you can
      * listen for this signal and make the change when the signal is dispatched.
      */
-    public var updateComplete(default, null):Signal0;
+    public var updateComplete(default, null):Signal;
 
     /**
      * The class used to manage node lists. In most cases the default class is sufficient
@@ -48,9 +47,9 @@ class Engine
         entityNames = new Map<String, Entity>();
         systemList = new SystemList();
         families = new ClassMap();
-        entityAdded = new Signal1<Entity>();
-        entityRemoved = new Signal1<Entity>();
-        updateComplete = new Signal0();
+        entityAdded = new Signal<Entity>();
+        entityRemoved = new Signal<Entity>();
+        updateComplete = new Signal();
         updating = false;
     }
 

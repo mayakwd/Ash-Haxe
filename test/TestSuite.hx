@@ -17,7 +17,6 @@ import ash.fsm.SystemInstanceProviderTest;
 import ash.fsm.SystemMethodProviderTest;
 import ash.fsm.SystemSingletonProviderTest;
 import ash.fsm.SystemStateTest;
-import ash.signals.SignalTest;
 import ash.tools.ComponentPoolTest;
 import ash.tools.ListIteratingSystemTest;
 
@@ -50,7 +49,6 @@ class TestSuite extends massive.munit.TestSuite
 		add(ash.fsm.SystemMethodProviderTest);
 		add(ash.fsm.SystemSingletonProviderTest);
 		add(ash.fsm.SystemStateTest);
-		add(ash.signals.SignalTest);
 		add(ash.tools.ComponentPoolTest);
 		add(ash.tools.ListIteratingSystemTest);
 	}

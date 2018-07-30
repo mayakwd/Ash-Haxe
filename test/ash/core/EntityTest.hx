@@ -80,7 +80,7 @@ class EntityTest extends MatchersBase
     public function canStoreExtendedComponentAsBaseType():Void
     {
         var component:MockComponentExtended = new MockComponentExtended();
-        entity.add(component, MockComponent);
+        entity.add(component, cast MockComponent);
         assertThat(entity.get(MockComponent), theInstance(component));
     }
 

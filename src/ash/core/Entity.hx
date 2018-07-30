@@ -1,7 +1,7 @@
 package ash.core;
 
+import hx.event.Signal;
 import ash.ClassMap;
-import ash.signals.Signal2;
 
 /**
  * An entity is composed from components. As such, it is essentially a collection object for components.
@@ -28,19 +28,19 @@ class Entity
     /**
      * Optional, give the entity a name. This can help with debugging and with serialising the entity.
      */
-    public var name(default, set_name):String;
+    public var name(default, set):String;
     /**
      * This signal is dispatched when a component is added to the entity.
      */
-    public var componentAdded(default, null):Signal2<Entity, Class<Dynamic>>;
+    public var componentAdded(default, null):Signal<Entity, Class<Dynamic>>;
     /**
      * This signal is dispatched when a component is removed from the entity.
      */
-    public var componentRemoved(default, null):Signal2<Entity, Class<Dynamic>>;
+    public var componentRemoved(default, null):Signal<Entity, Class<Dynamic>>;
     /**
      * Dispatched when the name of the entity changes. Used internally by the engine to track entities based on their names.
      */
-    public var nameChanged:Signal2<Entity, String>;
+    public var nameChanged:Signal<Entity, String>;
 
     public var previous:Entity;
     public var next:Entity;
@@ -48,9 +48,9 @@ class Entity
 
     public function new(name:String = "")
     {
-        componentAdded = new Signal2<Entity, Class<Dynamic>>();
-        componentRemoved = new Signal2<Entity, Class<Dynamic>>();
-        nameChanged = new Signal2<Entity, String>();
+        componentAdded = new Signal<Entity, Class<Dynamic>>();
+        componentRemoved = new Signal<Entity, Class<Dynamic>>();
+        nameChanged = new Signal<Entity, String>();
         components = new ClassMap();
 
         if (name != "")
@@ -86,7 +86,7 @@ class Entity
      *     .add(new Display(new PlayerClip());</code>
      */
 
-    public function add<T>(component:T, componentClass:Class<Dynamic> = null):Entity
+    public function add<T>(component:T, componentClass:Class<T> = null):Entity
     {
         if (componentClass == null)
             componentClass = Type.getClass(component);
@@ -106,7 +106,7 @@ class Entity
      * @return the component, or null if the component doesn't exist in the entity
      */
 
-    public function remove<T>(componentClass:Class<Dynamic>):T
+    public function remove<T>(componentClass:Class<T>):T
     {
         var component:T = components.get(componentClass);
         if (component != null)
@@ -125,7 +125,7 @@ class Entity
      * @return The component, or null if none was found.
      */
 
-    public function get<T>(componentClass:Class<Dynamic>):T
+    public function get<T>(componentClass:Class<T>):T
     {
         return components.get(componentClass);
     }
@@ -151,7 +151,7 @@ class Entity
      * @return true if the entity has a component of the type, false if not.
      */
 
-    public function has(componentClass:Class<Dynamic>):Bool
+    public function has<T>(componentClass:Class<T>):Bool
     {
         return components.exists(componentClass);
     }

@@ -19,7 +19,7 @@ class RenderNode extends Node<RenderNode>
     public var position:Position;
     private var display:Display;
 
-    public var displayObject(get_displayObject, never):DisplayObject;
+    public var displayObject(get, never):DisplayObject;
 
     private inline function get_displayObject():DisplayObject
     {

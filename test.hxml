@@ -1,5 +1,6 @@
 ## Flash 9+
 -main TestMain
+-lib signal
 -lib munit
 -lib hamcrest
 -cp src
@@ -12,6 +13,7 @@
 
 ## JavaScript
 -main TestMain
+-lib signal
 -lib munit
 -lib hamcrest
 -cp src
@@ -23,6 +25,7 @@
 
 ## Neko
 -main TestMain
+-lib signal
 -lib munit
 -lib hamcrest
 -cp src
@@ -34,6 +37,7 @@
 
 ## CPP
 -main TestMain
+-lib signal
 -lib munit
 -lib hamcrest
 -cp src

@@ -3,7 +3,7 @@ package ash.tick;
 import flash.display.DisplayObject;
 import flash.events.Event;
 
-import ash.signals.Signal1;
+import ash.signals.Signal;
 
 /**
  * Uses the enter frame event to provide a frame tick with a fixed frame duration. This tick ignores the length of
@@ -13,7 +13,7 @@ class FixedTickProvider implements ITickProvider
 {
     private var displayObject:DisplayObject;
     private var frameTime:Float;
-    private var signal:Signal1<Float>;
+    private var signal:Signal<Float>;
 
     public var playing(default, null):Bool;
 
@@ -26,7 +26,7 @@ class FixedTickProvider implements ITickProvider
     public function new(displayObject:DisplayObject, frameTime:Float)
     {
         playing = false;
-        signal = new Signal1<Float>();
+        signal = new Signal<Float>();
         this.displayObject = displayObject;
         this.frameTime = frameTime;
     }

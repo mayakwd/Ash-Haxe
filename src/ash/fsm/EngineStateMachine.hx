@@ -87,7 +87,7 @@ class EngineStateMachine
             newState = null;
             return;
         }
-        var toAdd:ObjectMap<Dynamic, Dynamic> = new ObjectMap();
+        var toAdd:ObjectMap<Dynamic, ISystemProvider<System>> = new ObjectMap();
         var id:Dynamic;
         for (provider in newState.providers)
         {

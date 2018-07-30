@@ -4,7 +4,7 @@ import flash.display.DisplayObject;
 import flash.events.Event;
 import flash.Lib;
 
-import ash.signals.Signal1;
+import ash.signals.Signal;
 
 /**
  * Uses the enter frame event to provide a frame tick where the frame duration is the time since the previous frame.
@@ -16,7 +16,7 @@ class FrameTickProvider implements ITickProvider
     private var displayObject:DisplayObject;
     private var previousTime:Float;
     private var maximumFrameTime:Float;
-    private var signal:Signal1<Float>;
+    private var signal:Signal<Float>;
 
     public var playing(default, null):Bool;
 
@@ -29,7 +29,7 @@ class FrameTickProvider implements ITickProvider
     public function new(displayObject:DisplayObject, maximumFrameTime:Float = 9999999999999999.0)
     {
         playing = false;
-        signal = new Signal1<Float>();
+        signal = new Signal<Float>();
         this.displayObject = displayObject;
         this.maximumFrameTime = maximumFrameTime;
     }
